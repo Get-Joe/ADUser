@@ -1,5 +1,7 @@
 ﻿$TodaysDate = (Get-Date)
-$ExpirationDate = 
+$DisabledIn = (7*2)
+$ExpirationDate = (Get-Date).Adddays(+($DisabledIn))
+
 
 
 
