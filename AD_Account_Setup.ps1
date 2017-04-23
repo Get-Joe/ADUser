@@ -9,7 +9,7 @@ $MiddleInitial = Read-Host -Prompt 'Enter Middle initial here.'
 $TempPassword = Read-Host -Prompt 'Enter temporary password for user here.'
 $Department = Read-Host -Prompt 'Enter department here.'
 $Description = Read-Host -Prompt 'Enter description here.'
-$VariableHere = Read-Host -Prompt ''
+$Manager = Read-Host -Prompt 'Enter Manager here.'
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
@@ -24,7 +24,7 @@ $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 
-New-ADUser [-Name] <string> [-AccountExpirationDate <System.Nullable[System.DateTime]>] -AccountPassword $TempPassword -ChangePasswordAtLogon $True [-City <string>] [-Company <string>] [-Country <string>] -Department $Department -Description $Description [-DisplayName <string>] [-Division <string>] -EmailAddress $FirstName.$LastName@CHANGEDOMAIN.COM [-Enabled <System.Nullable[bool]>] [-GivenName <string>] [-HomeDirectory <string>] [-HomeDrive <string>] [-HomePage <string>] [-Initials <string>] [-Instance <ADUser>] [-Manager <ADUser>] [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] [-PasswordNeverExpires <System.Nullable[bool]>] -PasswordNotRequired $false [-Path <string>] [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
+New-ADUser [-Name] <string> [-AccountExpirationDate <System.Nullable[System.DateTime]>] -AccountPassword $TempPassword -ChangePasswordAtLogon $true [-City <string>] [-Company <string>] [-Country <string>] -Department $Department -Description $Description [-DisplayName <string>] [-Division <string>] -EmailAddress $FirstName.$LastName@CHANGEDOMAIN.COM -Enabled $true [-GivenName <string>] [-HomeDirectory <string>] [-HomeDrive <string>] [-HomePage <string>] [-Initials <string>] [-Instance <ADUser>] -Manager $Manager [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] -PasswordNeverExpires $false -PasswordNotRequired $false [-Path <string>] [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] -Surname $LastName [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
 
 Get-ADUser | Export-Csv
 
