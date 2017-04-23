@@ -1,9 +1,14 @@
-﻿$VariableHere = Read-Host -Prompt ''
-$VariableHere = Read-Host -Prompt ''
-$VariableHere = Read-Host -Prompt ''
-$VariableHere = Read-Host -Prompt ''
-$VariableHere = Read-Host -Prompt ''
-$VariableHere = Read-Host -Prompt ''
+﻿$TodaysDate = (Get-Date)
+$ExpirationDate = 
+
+
+
+$FirstName = Read-Host -Prompt 'Enter First Name here.'
+$LastName = Read-Host -Prompt 'Enter Last Name here.'
+$MiddleInitial = Read-Host -Prompt 'Enter Middle initial here.'
+$TempPassword = Read-Host -Prompt 'Enter temporary password for user here.'
+$Department = Read-Host -Prompt 'Enter department here.'
+$Description = Read-Host -Prompt 'Enter description here.'
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
@@ -19,11 +24,7 @@ $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 $VariableHere = Read-Host -Prompt ''
 
-New-ADUser -
-
-
-
-New-ADUser [-Name] <string> [-AccountExpirationDate <System.Nullable[System.DateTime]>] [-AccountNotDelegated <System.Nullable[bool]>] [-AccountPassword <SecureString>] [-AllowReversiblePasswordEncryption <System.Nullable[bool]>] [-AuthType {Negotiate | Basic}] [-CannotChangePassword <System.Nullable[bool]>] [-Certificates <X509Certificate[]>] [-ChangePasswordAtLogon <System.Nullable[bool]>] [-City <string>] [-Company <string>] [-Country <string>] [-Credential <PSCredential>] [-Department <string>] [-Description <string>] [-DisplayName <string>] [-Division <string>] [-EmailAddress <string>] [-EmployeeID <string>] [-EmployeeNumber <string>] [-Enabled <System.Nullable[bool]>] [-Fax <string>] [-GivenName <string>] [-HomeDirectory <string>] [-HomeDrive <string>] [-HomePage <string>] [-HomePhone <string>] [-Initials <string>] [-Instance <ADUser>] [-LogonWorkstations <string>] [-Manager <ADUser>] [-MobilePhone <string>] [-Office <string>] [-OfficePhone <string>] [-Organization <string>] [-OtherAttributes <hashtable>] [-OtherName <string>] [-PassThru <switch>] [-PasswordNeverExpires <System.Nullable[bool]>] [-PasswordNotRequired <System.Nullable[bool]>] [-Path <string>] [-POBox <string>] [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-Server <string>] [-ServicePrincipalNames <string[]>] [-SmartcardLogonRequired <System.Nullable[bool]>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] [-Title <string>] [-TrustedForDelegation <System.Nullable[bool]>] [-Type <string>] [-UserPrincipalName <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
+New-ADUser [-Name] <string> [-AccountExpirationDate <System.Nullable[System.DateTime]>] -AccountPassword $TempPassword -ChangePasswordAtLogon $True [-City <string>] [-Company <string>] [-Country <string>] -Department $Department -Description $Description [-DisplayName <string>] [-Division <string>] -EmailAddress $FirstName.$LastName@CHANGEDOMAIN.COM [-Enabled <System.Nullable[bool]>] [-GivenName <string>] [-HomeDirectory <string>] [-HomeDrive <string>] [-HomePage <string>] [-Initials <string>] [-Instance <ADUser>] [-Manager <ADUser>] [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] [-PasswordNeverExpires <System.Nullable[bool]>] -PasswordNotRequired $false [-Path <string>] [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
 
 Get-ADUser | Export-Csv
 
@@ -50,3 +51,5 @@ $smtp = New-Object System.Net.Mail.SmtpClient($SMTPServer, $SMTPPort);
 $smtp.EnableSSL = $true
 $smtp.Credentials = New-Object System.Net.NetworkCredential($Username, $Password);
 $smtp.send($message)
+
+Write-Host -Foregroundcolor Green "Email sent."
