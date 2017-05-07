@@ -25,6 +25,13 @@ $VariableHere = Read-Host -Prompt 'Enter request statement here.'
 
 New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress $FirstName.$LastName@$EmailDomainName -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial [-Instance <ADUser>] -Manager $Manager [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] -PasswordNeverExpires $false -PasswordNotRequired $false [-Path <string>] -PostalCode $PostalCode [-ProfilePath <string>] -SamAccountName $FirstName.$LastName [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] -Surname $LastName [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
 
+# Creating the home drive is not completed durring account creation with powershell.
+# This is to create and adjust the security settings of the user's home directory.
+
+New-Item -ItemType Directory -Path $HomeDirectoryPath\$FirstName.$LastName
+
+
+
 Get-ADUser | Export-Csv
 
 $SMTPServer = "smtp.gmail.com"
