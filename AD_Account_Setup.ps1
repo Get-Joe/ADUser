@@ -2,8 +2,7 @@
 $DisabledIn = (7*2)
 $ExpirationDate = (Get-Date).Adddays(+($DisabledIn))
 
-
-
+# For any of the following variables, replace everything past the "=" with a constant for all new users.
 
 $FirstName = Read-Host -Prompt 'Enter First Name here.'
 $LastName = Read-Host -Prompt 'Enter Last Name here.'
@@ -11,11 +10,20 @@ $MiddleInitial = Read-Host -Prompt 'Enter Middle initial here.'
 $TempPassword = Read-Host -Prompt 'Enter temporary password for user here.'
 $Department = Read-Host -Prompt 'Enter department here.'
 $Description = Read-Host -Prompt 'Enter description here.'
-$Manager = Read-Host -Prompt 'Enter Manager here.'
+$Manager = Read-Host -Prompt 'Enter Manager AD name here.'
+$City = Read-Host -Prompt 'Enter City here.'
+$CompanyName = Read-Host -Prompt 'Enter Company Name here.'
+$CountryName = Read-Host -Prompt 'Country user is in.'
+$EmailDomainName = Read-Host -Prompt 'Enter your companies email domain. Everything after the "@" symbol.'
+$DivisionName = Read-Host -Prompt 'Enter Division Name here.'
+$PostalCode = Read-Host -Prompt 'Enter Postal Code here.'
+$HomeDirectoryPath = Read-Host -Prompt 'Full file share path excluding user specific folder'
+$HomeDriveLetter = Read-Host -Prompt 'Drive used to map user home drive.'
 
-$VariableHere = Read-Host -Prompt ''
 
-New-ADUser [-Name] <string> [-AccountExpirationDate <System.Nullable[System.DateTime]>] -AccountPassword $TempPassword -ChangePasswordAtLogon $true [-City <string>] [-Company <string>] [-Country <string>] -Department $Department -Description $Description [-DisplayName <string>] [-Division <string>] -EmailAddress $FirstName.$LastName@CHANGEDOMAIN.COM -Enabled $true [-GivenName <string>] [-HomeDirectory <string>] [-HomeDrive <string>] [-HomePage <string>] [-Initials <string>] [-Instance <ADUser>] -Manager $Manager [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] -PasswordNeverExpires $false -PasswordNotRequired $false [-Path <string>] [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] -Surname $LastName [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
+$VariableHere = Read-Host -Prompt 'Enter request statement here.'
+
+New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress $FirstName.$LastName@$EmailDomainName -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial [-Instance <ADUser>] -Manager $Manager [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] -PasswordNeverExpires $false -PasswordNotRequired $false [-Path <string>] -PostalCode $PostalCode [-ProfilePath <string>] -SamAccountName $FirstName.$LastName [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] -Surname $LastName [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
 
 Get-ADUser | Export-Csv
 
