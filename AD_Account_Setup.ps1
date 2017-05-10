@@ -32,7 +32,7 @@ New-Item -ItemType Directory -Path $HomeDirectoryPath\$FirstName.$LastName
 
 
 
-Get-ADUser | Export-Csv
+Get-ADUser -Name $FirstName.$LastName | Export-Csv
 
 $SMTPServer = "smtp.gmail.com"
 $SMTPPort = "587"
