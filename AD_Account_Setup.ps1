@@ -1,8 +1,10 @@
-﻿$TodaysDate = (Get-Date)
+﻿# Pulls todays date.
+$TodaysDate = (Get-Date)
+# Sets an addtional time to disable the account if administrator action is not taken.
 $DisabledIn = (7*2)
 $ExpirationDate = (Get-Date).Adddays(+($DisabledIn))
 
-# For any of the following variables, replace everything past the "=" with a constant for all new users.
+# For any of the following variables, create the variables listed with a constant from Administrators responce.
 
 $FirstName = Read-Host -Prompt 'Enter First Name here.'
 $LastName = Read-Host -Prompt 'Enter Last Name here.'
@@ -29,8 +31,8 @@ $State = Reat-Host -Prompt 'Enter state located in.'
 $StreetAddress = Read-Host -Prompt 'Enter street address for user.'
 $Title = Read-Host -Prompt 'Enter job title here.'
 
-
-$VariableHere = Read-Host -Prompt 'Enter request statement here.'
+# Format as follows:
+# $VariableHere = Read-Host -Prompt 'Enter request statement here.'
 
 New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress "$FirstName.$LastName@$EmailDomainName" -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial -Manager $Manager -Office $Office -Organization $Organization -OtherName $OtherName -PasswordNeverExpires $false -PasswordNotRequired $false -Path $Path -PostalCode $PostalCode -ProfilePath $ProfilePath -SamAccountName $FirstName.$LastName -ScriptPath $ScriptPath -State $State -StreetAddress $StreetAddress -Surname $LastName -Title $Title
 
@@ -39,20 +41,47 @@ New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -Ac
 
 New-Item -ItemType Directory -Path $HomeDirectoryPath\$FirstName.$LastName
 
+# Exports to CSV.
+# Correct path to export to.
 
+Get-ADUser -Name $FirstName.$LastName | Export-Csv -Path "C:\Folder\File.csv"
 
-Get-ADUser -Name $FirstName.$LastName | Export-Csv
+# Following is set up for gmail domian. Additional SMTP Forwarding for other email applications require changes.
 
 $SMTPServer = "smtp.gmail.com"
 $SMTPPort = "587"
+
+# Sender email name.
+
 $Username = "sending.user@domain.com"
+
+# Suggest provide secure string in place of SMTP username password.
+
 $Password = "password"
 
+## Creation of email with variables.
+
+# Suggest manager email.
+
 $to = "recipient.user@domain.com"
+
+# Suggest user email.
+
 $cc = "ccrecipient.user@domain.com"
+
+# Suggest static line.
+
 $subject = "Subject Line"
+
+# Suggest pulling in variables to create body of email.
+
 $body = "Information in email"
+
+# Location of .csv to attach to email.
+
 $attachment = "C:\Folder\File.csv"
+
+# Pull variable information in to create email.
 
 $message = New-Object System.Net.Mail.MailMessage
 $message.subject = $subject
