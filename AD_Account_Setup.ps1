@@ -1,4 +1,7 @@
-﻿# Pulls todays date.
+﻿# A script by Get-Joe.
+# (Please make it your own.)
+
+# Pulls todays date.
 $TodaysDate = (Get-Date)
 # Sets an addtional time to disable the account if administrator action is not taken.
 $DisabledIn = (7*2)
