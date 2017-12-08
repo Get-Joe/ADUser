@@ -5,7 +5,7 @@
 $TodaysDate = (Get-Date)
 # Sets an addtional time to disable the account if administrator action is not taken.
 $DisabledIn = (7*2)
-$ExpirationDate = (Get-Date).Adddays(+($DisabledIn))
+$ExpirationDate = ($TodaysDate).Adddays(+($DisabledIn))
 
 # For any of the following variables, create the variables listed with a constant from Administrators responce.
 
