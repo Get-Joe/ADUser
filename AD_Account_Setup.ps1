@@ -19,11 +19,20 @@ $DivisionName = Read-Host -Prompt 'Enter Division Name here.'
 $PostalCode = Read-Host -Prompt 'Enter Postal Code here.'
 $HomeDirectoryPath = Read-Host -Prompt 'Full file share path excluding user specific folder'
 $HomeDriveLetter = Read-Host -Prompt 'Drive used to map user home drive.'
+$Office = Read-Host -Prompt 'Enter Office name here.'
+$Organization = Read-Host -Prompt 'Enter Organization here.'
+$OtherName = Read-Host -Prompt 'Enter nick-name here.'
+$Path = Read-Host - Prompt 'Enter Path to current user OU.'
+$ProfilePath = Read-Host - Prompt 'Enter C:\ drive profile path location.'
+$ScriptPath = Read-Host -Prompt 'Enter logon scrip path location.'
+$State = Reat-Host -Prompt 'Enter state located in.'
+$StreetAddress = Read-Host -Prompt 'Enter street address for user.'
+$Title = Read-Host -Prompt 'Enter job title here.'
 
 
 $VariableHere = Read-Host -Prompt 'Enter request statement here.'
 
-New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress $FirstName.$LastName@$EmailDomainName -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial [-Instance <ADUser>] -Manager $Manager [-Office <string>] [-Organization <string>] [-OtherName <string>] [-PassThru <switch>] -PasswordNeverExpires $false -PasswordNotRequired $false [-Path <string>] -PostalCode $PostalCode [-ProfilePath <string>] -SamAccountName $FirstName.$LastName [-ScriptPath <string>] [-ServicePrincipalNames <string[]>] [-State <string>] [-StreetAddress <string>] -Surname $LastName [-Title <string>] [-Type <string>] [-UserPrincipalName <string>] [-WhatIf]
+New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress "$FirstName.$LastName@$EmailDomainName" -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial -Manager $Manager -Office $Office -Organization $Organization -OtherName $OtherName -PasswordNeverExpires $false -PasswordNotRequired $false -Path $Path -PostalCode $PostalCode -ProfilePath $ProfilePath -SamAccountName $FirstName.$LastName -ScriptPath $ScriptPath -State $State -StreetAddress $StreetAddress -Surname $LastName -Title $Title
 
 # Creating the home drive is not completed durring account creation with powershell.
 # This is to create and adjust the security settings of the user's home directory.
