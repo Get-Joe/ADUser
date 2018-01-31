@@ -24,6 +24,14 @@ Same CYOA as above.
 
 Started to import from a *.csv to create the the account to remove IT department fat fingering.
 
+## Section Rundown
+
+*PLACE HOLDER WHILE SETTING UP THE REST OF THE SCRIPT*
+
+Option use csv and email is optional. Variables are available to be used in the body of the email. This can be used to send whatever automated email you as an I.T. department decide is warrented.
+
+Attitional modification should always be tested in an offline format to ensure compliance with enterprise requirements.
+
 ### Advice
 
 1. Please make these your own.
