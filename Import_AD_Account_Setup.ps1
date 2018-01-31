@@ -10,10 +10,12 @@ $ExpirationDate = ($TodaysDate).Adddays(+($DisabledIn))
 # PLACEHOLDER FOR SCRIPT
 # WILL COMPLETE IN TIME
 
+# Correct list in ("header") to match what is available in your *.csv.
 $ImportADUser = (Import-Csv C:\csvname.csv<span> </span>-header ("firstname","lastname","middleinitial","temppassword","department","description","manager","city","companyname","countryname","emaildomainname","divisionname","postalcode","homedirectorypath","homedriveletter","office","organization","othername","path","profilepath","scriptpath","state","streetaddress","title")
 
 foreach ($row in $ImportADUser){
-    # Correct $row.(Whatever is listed after) to match the *.csv header
+    # Correct $row.(Whatever is listed after) to match the *.csv header.
+    # Correct the above headers to match what is availible in the *.csv.
     $FirstName = $row.firstname # As always can be set to a static value.
     $LastName = $row.lastname # As always can be set to a static value.
     $MiddleInitial = $row.middleinitial # As always can be set to a static value.
