@@ -8,8 +8,39 @@ $DisabledIn = (7*2)
 $ExpirationDate = ($TodaysDate).Adddays(+($DisabledIn))
 
 # PLACEHOLDER FOR SCRIPT
-# NOT STARTED YET
-# WILL FILL LATER
+# WILL COMPLETE IN TIME
+
+$ImportADUser = (Import-Csv C:\csvname.csv<span> </span>-header ("firstname","lastname","middleinitial","temppassword","department","description","manager","city","companyname","countryname","emaildomainname","divisionname","postalcode","homedirectorypath","homedriveletter","office","organization","othername","path","profilepath","scriptpath","state","streetaddress","title")
+
+foreach ($row in $ImportADUser){
+    # Correct $row.(Whatever is listed after) to match the *.csv header
+    $FirstName = $row.firstname # As always can be set to a static value.
+    $LastName = $row.lastname # As always can be set to a static value.
+    $MiddleInitial = $row.middleinitial # As always can be set to a static value.
+    $TempPassword = $row.temppassword # As always can be set to a static value.
+    $Department = $row.department # As always can be set to a static value.
+    $Description = $row.description # As always can be set to a static value.
+    $Manager = $row.manager # As always can be set to a static value.
+    $City = $row.city # As always can be set to a static value.
+    $CompanyName = $row.companyname # As always can be set to a static value.
+    $CountryName = $row.countryname # As always can be set to a static value.
+    $EmailDomainName = $row.emaildomainname # As always can be set to a static value.
+    $DivisionName = $row.divisionname # As always can be set to a static value.
+    $PostalCode = $row.postalcode # As always can be set to a static value.
+    $HomeDirectoryPath =  $row.homedirectorypath # As always can be set to a static value.
+    $HomeDriveLetter =  $row.homedriveletter # As always can be set to a static value.
+    $Office = $row.office # As always can be set to a static value.
+    $Organization = $row.organization # As always can be set to a static value.
+    $OtherName = $row.othername # As always can be set to a static value.
+    $Path = $row.path # As always can be set to a static value.
+    $ProfilePath = $row.profilepath # As always can be set to a static value.
+    $ScriptPath = $row.scriptpath # As always can be set to a static value.
+    $State = $row.state # As always can be set to a static value.
+    $StreetAddress = $row.streetaddress # As always can be set to a static value.
+    $Title = $row.title # As always can be set to a static value.
+
+}
+
 
 # Creating the home drive is not completed durring account creation with powershell.
 # This is to create and adjust the security settings of the user's home directory.
@@ -71,4 +102,4 @@ $smtp.EnableSSL = $true
 $smtp.Credentials = New-Object System.Net.NetworkCredential($Username, $Password);
 $smtp.send($message)
 
-Write-Host -Foregroundcolor Green "Email sent."
+Write -Foregroundcolor Green "Email sent."
