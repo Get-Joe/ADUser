@@ -13,7 +13,7 @@ $ExpirationDate = ($TodaysDate).Adddays(+($DisabledIn))
 # Correct list in ("header") to match what is available in your *.csv.
 $ImportADUser = (Import-Csv C:\csvname.csv<span> </span>-header ("firstname","lastname","middleinitial","temppassword","department","description","manager","city","companyname","countryname","emaildomainname","divisionname","postalcode","homedirectorypath","homedriveletter","office","organization","othername","path","profilepath","scriptpath","state","streetaddress","title")
 
-foreach ($row in $ImportADUser){
+ForEach-Object ($row in $ImportADUser){
     # Correct $row.(Whatever is listed after) to match the *.csv header.
     # Correct the above headers to match what is availible in the *.csv.
     $FirstName = $row.firstname # As always can be set to a static value.
@@ -43,6 +43,7 @@ foreach ($row in $ImportADUser){
 
 }
 
+New-ADUser -Name $FirstName.$LastName -AccountExpirationDate $ExpirationDate -AccountPassword $TempPassword -ChangePasswordAtLogon $true -City $City -Company $CompanyName -Country $CountryName -Department $Department -Description $Description -DisplayName $FirstName.$LastName -Division $DivisionName -EmailAddress "$FirstName.$LastName@$EmailDomainName" -Enabled $true -GivenName $FirstName -HomeDirectory $HomeDirectoryPath\$FirstName.$LastName -HomeDrive $HomeDriveLetter -Initials $MiddleInitial -Manager $Manager -Office $Office -Organization $Organization -OtherName $OtherName -PasswordNeverExpires $false -PasswordNotRequired $false -Path $Path -PostalCode $PostalCode -ProfilePath $ProfilePath -SamAccountName $FirstName.$LastName -ScriptPath $ScriptPath -State $State -StreetAddress $StreetAddress -Surname $LastName -Title $Title
 
 # Creating the home drive is not completed durring account creation with powershell.
 # This is to create and adjust the security settings of the user's home directory.
